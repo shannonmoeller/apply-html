@@ -55,10 +55,10 @@ $ npm test
 
 Licensed under [MIT](http://shannonmoeller.com/mit.txt)
 
-[coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/cli-columns/master.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/shannonmoeller/cli-columns
-[downloads-img]: http://img.shields.io/npm/dm/cli-columns.svg?style=flat-square
-[npm-img]:       http://img.shields.io/npm/v/cli-columns.svg?style=flat-square
-[npm-url]:       https://npmjs.org/package/cli-columns
-[travis-img]:    http://img.shields.io/travis/shannonmoeller/cli-columns.svg?style=flat-square
-[travis-url]:    https://travis-ci.org/shannonmoeller/cli-columns
+[coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/apply-html/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/shannonmoeller/apply-html
+[downloads-img]: http://img.shields.io/npm/dm/apply-html.svg?style=flat-square
+[npm-img]:       http://img.shields.io/npm/v/apply-html.svg?style=flat-square
+[npm-url]:       https://npmjs.org/package/apply-html
+[travis-img]:    http://img.shields.io/travis/shannonmoeller/apply-html.svg?style=flat-square
+[travis-url]:    https://travis-ci.org/shannonmoeller/apply-html
