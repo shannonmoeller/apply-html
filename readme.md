@@ -33,11 +33,13 @@ console.log(document.body.innerHTML);
 
 ## API
 
-### html``: Template
+### `` html`string`: Template ``
 
-### raw(): Template
+### `raw(string): Template`
 
-### apply(oldTree, string): Element
+### `apply(element, string): element`
+
+### `Template` Class
 
 ## Contribute
 
@@ -48,6 +50,11 @@ Standards for this project, including tests, code coverage, and semantics are en
 ```command
 $ npm test
 ```
+
+## Attribution
+
+- [Original CodePen](https://codepen.io/shannonmoeller/pen/opEdpe?editors=0010)
+- [`nanomorph`](http://npm.im/nanomorph)
 
 ----
 
