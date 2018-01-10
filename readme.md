@@ -55,6 +55,10 @@ $ npm test
 
 - [Original CodePen](https://codepen.io/shannonmoeller/pen/opEdpe?editors=0010)
 - [`nanomorph`](http://npm.im/nanomorph)
+- [`morphdom`](http://npm.im/morphdom)
+- [`bel`](http://npm.im/bel)
+- [`hyperhtml`](http://npm.im/hyperhtml)
+- [`lit-html`](http://npm.im/lit-html)
 
 ----
 
