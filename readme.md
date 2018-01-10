@@ -13,7 +13,7 @@ $ npm install --save apply-html
 ## Usage
 
 ```js
-const { html, apply } = require('apply-html');
+const { html, raw, apply } = require('apply-html');
 
 const state = {
     salutation: 'Hello',
