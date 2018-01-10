@@ -47,6 +47,10 @@ function serialize(value) {
 }
 
 function raw(string) {
+	if (string instanceof Template) {
+		return string;
+	}
+
 	return new Template(string);
 }
 
