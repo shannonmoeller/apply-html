@@ -1,6 +1,6 @@
 {
   "name": "apply-html",
-  "version": "1.0.0-7",
+  "version": "1.0.0-8",
   "description": "It's `innerHTML` for the modern world.",
   "scripts": {
     "report": "nyc report -r text-lcov | coveralls",
@@ -34,6 +34,12 @@
     "coveralls": "^3.0.0",
     "nyc": "^11.4.1",
     "xo": "^0.18.2"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   },
   "xo": {
     "envs": [

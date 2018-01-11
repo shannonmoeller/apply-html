@@ -2,7 +2,11 @@ const nanomorph = require('nanomorph');
 
 class SafeString {
 	constructor(raw) {
-		this.raw = raw;
+		this.raw = String(raw);
+	}
+
+	get length() {
+		return this.raw.length;
 	}
 
 	toJSON() {
@@ -15,7 +19,11 @@ class SafeString {
 }
 
 function escape(value) {
-	return String(value)
+	if (typeof value !== 'string') {
+		throw new TypeError('Expected a string.');
+	}
+
+	return value
 		.replace(/&/g, '&amp;')
 		.replace(/>/g, '&gt;')
 		.replace(/</g, '&lt;')
@@ -25,10 +33,6 @@ function escape(value) {
 }
 
 function serialize(value) {
-	if (value === null || value === undefined || typeof value === 'boolean') {
-		value = '';
-	}
-
 	if (value instanceof SafeString) {
 		// Assume trustworthy
 		return value.raw;
@@ -38,37 +42,46 @@ function serialize(value) {
 		return value.map(serialize).join('');
 	}
 
-	if (typeof value === 'object') {
-		value = JSON.stringify(value);
+	if (value === null || value === undefined) {
+		return '';
+	}
+
+	switch (typeof value) {
+		case 'boolean':
+			return '';
+
+		case 'function':
+			throw new TypeError(`Unexpected function: ${value}`);
+
+		case 'number':
+			value = String(value);
+			break;
+
+		case 'object':
+			value = JSON.stringify(value);
+			break;
+
+		default:
+			break;
 	}
 
 	// Assume untrustworthy
 	return escape(value);
 }
 
-function raw(string) {
-	if (string instanceof SafeString) {
-		return string;
+function apply(element, string) {
+	if (!(element instanceof Element)) {
+		throw new TypeError('Expected an element.');
 	}
 
-	return new SafeString(string);
-}
+	if (string instanceof SafeString) {
+		string = string.toString();
+	}
 
-function html(strings, ...values) {
-	const literals = strings.raw;
-	let result = '';
+	if (typeof string !== 'string') {
+		throw new TypeError('Expected a string.');
+	}
 
-	values.forEach((value, i) => {
-		result += literals[i];
-		result += serialize(value);
-	});
-
-	result += literals[literals.length - 1];
-
-	return new SafeString(result);
-}
-
-function apply(element, string) {
 	// Clone root node without children
 	const clone = element.cloneNode(false);
 
@@ -86,11 +99,33 @@ function apply(element, string) {
 	return nanomorph(element, clone);
 }
 
+function html(strings, ...values) {
+	const literals = strings.raw;
+	let result = '';
+
+	values.forEach((value, i) => {
+		result += literals[i];
+		result += serialize(value);
+	});
+
+	result += literals[literals.length - 1];
+
+	return new SafeString(result);
+}
+
+function raw(string) {
+	if (string instanceof SafeString) {
+		return string;
+	}
+
+	return new SafeString(string);
+}
+
 module.exports = {
 	SafeString,
 	escape,
 	serialize,
-	raw,
+	apply,
 	html,
-	apply
+	raw
 };
