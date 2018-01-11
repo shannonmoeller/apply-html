@@ -76,7 +76,13 @@ Thus, `apply-html` ensures that things only start happening if and when they're 
 
 ### `` html`string`: SafeString ``
 
-A template tag that creates a new [SafeString](#safestring) containing a string of HTML. Values passed into the template tag will be serialized based on type. Arrays are joined with an empty string (`''`) after each item is serialized. Objects are converted to HTML-escaped JSON blobs. Literal strings will be HTML-escaped to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, pass the string to [`raw()`](#rawstring-safestring) first.
+A template tag that creates a new [SafeString](#safestring) containing a string of HTML. Interpolated values are serialized based on type:
+
+- `Boolean|null|undefined` - Converted to an empty string (`''`).
+- `Array` - Items are serialized then joined with an empty string (`''`).
+- `Object` - Converted to HTML-escaped JSON blobs.
+- `String` - Literal strings will be HTML-escaped to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, pass the string to [`raw()`](#rawstring-safestring) first.
+- `SafeString` - Inserted as-is.
 
 ### `raw(string): SafeString`
 
