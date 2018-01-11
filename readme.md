@@ -82,7 +82,8 @@ A template tag that creates a new [SafeString](#safestring) containing a string 
 - `Array` - Items are serialized then joined with an empty string (`''`).
 - `Object` - Converted to HTML-escaped JSON blobs.
 - `String` - Literal strings will be HTML-escaped to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, use [`raw()`](#rawstring-safestring).
-- `SafeString` - Inserted as-is.
+- `SafeString|Number` - Inserted as-is.
+- `Function` - Throws a `TypeError`.
 
 ### `raw(string): SafeString`
 
