@@ -82,18 +82,20 @@ A template tag that creates a new [SafeString](#safestring) containing a string 
 
 - `string` `{String}` String of safe HTML.
 
-Creates a new [SafeString](#safestring) containing a string of HTML assumed to be safe for insertion into the document.
+Wraps a string with a [SafeString](#safestring) to indicate that it's safe to be inserted into the document. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). 
 
 ### `apply(element, string): element`
 
 - `element` `{Element}` HTML element with children to be patched.
 - `string` `{String|SafeString}` String or [SafeString](#safestring) containing safe HTML to render.
 
+Updates the content of the given element, making the fewest possible changes required to match the given string of HTML. Returns the element after all changes have been applied.
+
 ## SafeString
 
 ### `new SafeString(string)`
 
-Wraps a string to indicate that the string is safe to be inserted into the document. Only use on trusted strings to to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
+Wraps a string to indicate that the string is safe to be inserted into the document. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
 
 ### SafeString Properties
 
