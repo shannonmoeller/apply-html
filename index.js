@@ -1,6 +1,6 @@
 const nanomorph = require('nanomorph');
 
-class Template {
+class SafeString {
 	constructor(raw) {
 		this.raw = raw;
 	}
@@ -29,7 +29,7 @@ function serialize(value) {
 		value = '';
 	}
 
-	if (value instanceof Template) {
+	if (value instanceof SafeString) {
 		// Assume trustworthy
 		return value.raw;
 	}
@@ -47,11 +47,11 @@ function serialize(value) {
 }
 
 function raw(string) {
-	if (string instanceof Template) {
+	if (string instanceof SafeString) {
 		return string;
 	}
 
-	return new Template(string);
+	return new SafeString(string);
 }
 
 function html(strings, ...values) {
@@ -65,29 +65,29 @@ function html(strings, ...values) {
 
 	result += literals[literals.length - 1];
 
-	return new Template(result);
+	return new SafeString(result);
 }
 
-function apply(a, b) {
+function apply(element, string) {
 	// Clone root node without children
-	const clone = a.cloneNode(false);
+	const clone = element.cloneNode(false);
 
 	// Create inert DOM structure for diffing. Prevents
 	// premature or duplicate resource loading and
 	// execution of custom-element lifecycle callbacks.
 	const template = document.createElement('template');
 
-	template.innerHTML = b;
+	template.innerHTML = string;
 
 	// Attach inert DOM to clone
 	clone.appendChild(template.content);
 
 	// Patch live DOM with new inert DOM
-	return nanomorph(a, clone);
+	return nanomorph(element, clone);
 }
 
 module.exports = {
-	Template,
+	SafeString,
 	escape,
 	serialize,
 	raw,

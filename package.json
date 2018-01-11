@@ -1,6 +1,6 @@
 {
   "name": "apply-html",
-  "version": "1.0.0-6",
+  "version": "1.0.0-7",
   "description": "It's `innerHTML` for the modern world.",
   "scripts": {
     "report": "nyc report -r text-lcov | coveralls",
