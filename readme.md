@@ -101,7 +101,7 @@ Updates the content of the given element, making the fewest possible changes req
 
 ### `new SafeString(string)`
 
-Wraps a string to indicate that the string is safe to be inserted into the document. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
+Wraps a string to indicate that the string is safe to be inserted into the DOM. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
 
 ### SafeString Properties
 
