@@ -1,5 +1,5 @@
 import test from 'ava';
-import {SafeString, escape, html, raw} from '.';
+import {SafeString, escape, html, raw} from '..';
 
 test('should create safe strings', t => {
 	t.truthy(html`` instanceof SafeString);

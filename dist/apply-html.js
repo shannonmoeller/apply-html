@@ -1,4 +1,10 @@
-const nanomorph = require('nanomorph');
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('nanomorph')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'nanomorph'], factory) :
+	(factory((global.applyHtml = {}),global.nanomorph));
+}(this, (function (exports,nanomorph) { 'use strict';
+
+nanomorph = nanomorph && nanomorph.hasOwnProperty('default') ? nanomorph['default'] : nanomorph;
 
 class SafeString {
 	constructor(raw) {
@@ -121,11 +127,13 @@ function raw(string) {
 	return new SafeString(string);
 }
 
-module.exports = {
-	SafeString,
-	escape,
-	serialize,
-	apply,
-	html,
-	raw
-};
+exports.SafeString = SafeString;
+exports.escape = escape;
+exports.serialize = serialize;
+exports.apply = apply;
+exports.html = html;
+exports.raw = raw;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
