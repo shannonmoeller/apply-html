@@ -34,10 +34,10 @@
     "src"
   ],
   "dependencies": {
+    "@std/esm": "^0.19.2",
     "nanomorph": "^5.1.3"
   },
   "devDependencies": {
-    "@std/esm": "^0.19.2",
     "ava": "^0.24.0",
     "coveralls": "^3.0.0",
     "husky": "^0.14.3",
