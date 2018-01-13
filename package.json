@@ -4,9 +4,9 @@
   "description": "It's `.innerHTML = ''` for the modern world.",
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
-    "test": "xo && nyc ava -v",
+    "test": "xo --fix && nyc ava -v",
     "report": "nyc report -r text-lcov | coveralls",
-    "precommit": "npm run build && npm run test",
+    "precommit": "npm run build && npm run test && git add .",
     "prepublishOnly": "git diff-index --quiet HEAD"
   },
   "keywords": [
