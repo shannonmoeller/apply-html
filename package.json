@@ -3,10 +3,9 @@
   "version": "1.0.0-11",
   "description": "It's `.innerHTML = ''` for the modern world.",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && rollup -c",
     "test": "xo --fix && nyc ava -v",
     "report": "nyc report -r text-lcov | coveralls",
-    "precommit": "npm run build && npm run test && git add .",
+    "precommit": "npm run test && git add .",
     "prepublishOnly": "git diff-index --quiet HEAD"
   },
   "keywords": [
@@ -27,10 +26,8 @@
   "license": "MIT",
   "main": "index.js",
   "module": "src/apply-html.js",
-  "browser": "dist/apply-html.js",
   "files": [
     "index.js",
-    "dist",
     "src"
   ],
   "dependencies": {
@@ -42,7 +39,6 @@
     "coveralls": "^3.0.0",
     "husky": "^0.14.3",
     "nyc": "^11.4.1",
-    "rollup": "^0.54.0",
     "xo": "^0.18.2"
   },
   "@std/esm": "cjs",
