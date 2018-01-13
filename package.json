@@ -1,6 +1,6 @@
 {
   "name": "apply-html",
-  "version": "1.0.0-11",
+  "version": "1.0.0-12",
   "description": "It's `.innerHTML = ''` for the modern world.",
   "scripts": {
     "test": "xo --fix && nyc ava -v",
