@@ -25,10 +25,11 @@
   "homepage": "https://github.com/shannonmoeller/apply-html#readme",
   "repository": "shannonmoeller/apply-html",
   "license": "MIT",
-  "main": "dist/apply-html.js",
+  "main": "index.js",
   "module": "src/apply-html.js",
   "browser": "dist/apply-html.js",
   "files": [
+    "index.js",
     "dist",
     "src"
   ],
@@ -46,9 +47,6 @@
   },
   "@std/esm": "cjs",
   "nyc": {
-    "requires": [
-      "@std/esm"
-    ],
     "reporter": [
       "lcov",
       "text"
