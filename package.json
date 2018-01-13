@@ -6,8 +6,7 @@
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "test": "xo && nyc ava -v",
     "report": "nyc report -r text-lcov | coveralls",
-    "prepublish": "npm run build",
-    "precommit": "npm run test"
+    "precommit": "npm run build && npm run test"
   },
   "keywords": [
     "apply",
