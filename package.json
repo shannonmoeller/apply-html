@@ -28,7 +28,6 @@
   "main": "dist/apply-html.js",
   "module": "src/apply-html.js",
   "files": [
-    "index.js",
     "dist",
     "src"
   ],
@@ -45,6 +44,11 @@
     "xo": "^0.18.2"
   },
   "@std/esm": "cjs",
+  "ava": {
+    "require": [
+      "@std/esm"
+    ]
+  },
   "nyc": {
     "reporter": [
       "lcov",
