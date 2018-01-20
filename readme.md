@@ -135,9 +135,7 @@ $ npm test
 
 ----
 
-© Shannon Moeller <me@shannonmoeller.com> (shannonmoeller.com)
-
-Licensed under [MIT](http://shannonmoeller.com/mit.txt)
+MIT © [Shannon Moeller](http://shannonmoeller.com)
 
 [coveralls-img]: http://img.shields.io/coveralls/shannonmoeller/apply-html/master.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/r/shannonmoeller/apply-html
