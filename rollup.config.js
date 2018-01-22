@@ -1,22 +1,17 @@
-// eslint-disable-next-line import/extensions
-import pkg from './package.json';
+import camelcase from 'lodash.camelcase';
+import pkg from './package.json'; // eslint-disable-line import/extensions
 
 const external = Object.keys(pkg.dependencies);
-const globals = external.reduce((a, b) => {
-	const c = b.replace(/[\W_]+([a-z])/g, g => g[1].toUpperCase());
-
-	a[b] = c[0].toLowerCase() + c.slice(1);
-
-	return a;
-}, {});
+const toCamelMap = (a, b) => Object.assign(a, {[b]: camelcase(b)});
+const globals = external.reduce(toCamelMap, {});
 
 export default {
-	external,
 	input: 'src/apply-html.js',
 	output: {
 		file: 'dist/apply-html.js',
 		format: 'umd',
 		name: 'applyHtml',
 		globals
-	}
+	},
+	external
 };

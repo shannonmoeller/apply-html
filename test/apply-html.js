@@ -4,6 +4,7 @@ import {SafeString, escape, html, raw} from '..';
 test('should create safe strings', t => {
 	t.truthy(html`` instanceof SafeString);
 	t.truthy(raw('') instanceof SafeString);
+	t.truthy(raw(html``) instanceof SafeString);
 	t.truthy(raw(raw('')) instanceof SafeString);
 });
 
