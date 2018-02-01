@@ -32,7 +32,7 @@
     "src"
   ],
   "dependencies": {
-    "domdiff": "^0.3.6"
+    "nanomorph": "github:shannonmoeller/nanomorph"
   },
   "devDependencies": {
     "@std/esm": "^0.19.2",
