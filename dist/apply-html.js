@@ -1,10 +1,10 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('nanomorph')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'nanomorph'], factory) :
-	(factory((global.applyHtml = {}),global.nanomorph));
-}(this, (function (exports,nanomorph) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('domdiff')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'domdiff'], factory) :
+	(factory((global.applyHtml = {}),global.domdiff));
+}(this, (function (exports,domdiff) { 'use strict';
 
-nanomorph = nanomorph && nanomorph.hasOwnProperty('default') ? nanomorph['default'] : nanomorph;
+domdiff = domdiff && domdiff.hasOwnProperty('default') ? domdiff['default'] : domdiff;
 
 class SafeString {
 	constructor(raw) {
@@ -88,9 +88,6 @@ function apply(element, string) {
 		throw new TypeError('Expected a string.');
 	}
 
-	// Clone root node without children
-	const clone = element.cloneNode(false);
-
 	// Create inert DOM structure for diffing. Prevents
 	// premature or duplicate resource loading and
 	// execution of custom-element lifecycle callbacks.
@@ -98,11 +95,14 @@ function apply(element, string) {
 
 	template.innerHTML = string;
 
-	// Attach inert DOM to clone
-	clone.appendChild(template.content);
-
 	// Patch live DOM with new inert DOM
-	return nanomorph(element, clone);
+	domdiff(
+		element,
+		Array.from(element.childNodes),
+		Array.from(template.content.childNodes)
+	);
+
+	return element;
 }
 
 function html(strings, ...values) {

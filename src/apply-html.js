@@ -1,4 +1,4 @@
-import nanomorph from 'nanomorph';
+import domdiff from 'domdiff';
 
 export class SafeString {
 	constructor(raw) {
@@ -82,9 +82,6 @@ export function apply(element, string) {
 		throw new TypeError('Expected a string.');
 	}
 
-	// Clone root node without children
-	const clone = element.cloneNode(false);
-
 	// Create inert DOM structure for diffing. Prevents
 	// premature or duplicate resource loading and
 	// execution of custom-element lifecycle callbacks.
@@ -92,11 +89,14 @@ export function apply(element, string) {
 
 	template.innerHTML = string;
 
-	// Attach inert DOM to clone
-	clone.appendChild(template.content);
-
 	// Patch live DOM with new inert DOM
-	return nanomorph(element, clone);
+	domdiff(
+		element,
+		Array.from(element.childNodes),
+		Array.from(template.content.childNodes)
+	);
+
+	return element;
 }
 
 export function html(strings, ...values) {
