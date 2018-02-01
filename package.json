@@ -1,10 +1,10 @@
 {
   "name": "apply-html",
-  "version": "1.0.0-14",
+  "version": "1.0.0-15",
   "description": "It's `.innerHTML = ''` for the modern world.",
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
-    "test": "xo --fix && nyc ava -v",
+    "test": "xo --fix && nyc ava",
     "report": "nyc report -r text-lcov | coveralls",
     "precommit": "npm run build && npm run test && git add .",
     "prepublishOnly": "git diff-index --quiet HEAD"
@@ -32,7 +32,7 @@
     "src"
   ],
   "dependencies": {
-    "nanomorph": "github:shannonmoeller/nanomorph"
+    "nanomorph": "github:shannonmoeller/nanomorph#cc1b2b6"
   },
   "devDependencies": {
     "@std/esm": "^0.19.2",
@@ -46,6 +46,7 @@
   },
   "@std/esm": "cjs",
   "ava": {
+    "verbose": true,
     "require": [
       "@std/esm"
     ]
