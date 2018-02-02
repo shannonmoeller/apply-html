@@ -1,6 +1,6 @@
 {
   "name": "apply-html",
-  "version": "1.0.0-15",
+  "version": "1.0.0-16",
   "description": "It's `.innerHTML = ''` for the modern world.",
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
