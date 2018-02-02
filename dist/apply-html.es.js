@@ -1,6 +1,6 @@
 import nanomorph from 'nanomorph';
 
-export class SafeString {
+class SafeString {
 	constructor(raw) {
 		this.raw = String(raw);
 	}
@@ -18,7 +18,7 @@ export class SafeString {
 	}
 }
 
-export function escape(value) {
+function escape(value) {
 	if (typeof value !== 'string') {
 		throw new TypeError('Expected a string.');
 	}
@@ -32,7 +32,7 @@ export function escape(value) {
 		.replace(/`/g, '&#96;');
 }
 
-export function serialize(value) {
+function serialize(value) {
 	if (value instanceof SafeString) {
 		// Assume trustworthy
 		return value.raw;
@@ -69,7 +69,7 @@ export function serialize(value) {
 	return escape(value);
 }
 
-export function apply(element, string) {
+function apply(element, string) {
 	if (!(element instanceof Element)) {
 		throw new TypeError('Expected an element.');
 	}
@@ -91,13 +91,13 @@ export function apply(element, string) {
 
 	// Patch live DOM with new inert DOM
 	nanomorph(element, template.content, {
-		childrenOnly: true
+		childrenOnly: true,
 	});
 
 	return element;
 }
 
-export function html(strings, ...values) {
+function html(strings, ...values) {
 	const literals = strings.raw;
 	let result = '';
 
@@ -111,10 +111,13 @@ export function html(strings, ...values) {
 	return new SafeString(result);
 }
 
-export function raw(string) {
+function raw(string) {
 	if (string instanceof SafeString) {
 		return string;
 	}
 
 	return new SafeString(string);
 }
+
+export { SafeString, escape, serialize, apply, html, raw };
+//# sourceMappingURL=apply-html.es.js.map

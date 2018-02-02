@@ -97,7 +97,7 @@ function apply(element, string) {
 
 	// Patch live DOM with new inert DOM
 	nanomorph(element, template.content, {
-		childrenOnly: true
+		childrenOnly: true,
 	});
 
 	return element;
@@ -135,3 +135,4 @@ exports.raw = raw;
 Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
+//# sourceMappingURL=apply-html.umd.js.map
