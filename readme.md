@@ -6,13 +6,13 @@ It's `.innerHTML = ''` for the 21st century!
 
 Yet another library to diff and patch an existing DOM tree by efficiently comparing it to a string. Why? This library is a little bit different than [others](#acknowledgements). It makes use of an [HTML `<template>`'s](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) unique ability to create an inert [document fragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment). These amazing creatures' features include:
 
-- Real DOM tree
+- A real DOM tree
 - Multiple root nodes
 - Will not trigger resource loading prematurely
 - Will not apply embedded stylesheets prematurely
 - Will not trigger custom element constructors or lifecycle events prematurely
 
-The live DOM is then patched with [`nanomorph`](http://npm.im/nanomorph), a hyper-fast diffing algorithm for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
+The live DOM is then patched with the inert fragment using [`nanomorph`](http://npm.im/nanomorph), a hyper-fast diffing algorithm for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
 
 Play with it on [CodePen](https://codepen.io/shannonmoeller/pen/XZXBpE?editors=1111).
 
