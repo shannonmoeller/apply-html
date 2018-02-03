@@ -81,6 +81,13 @@ module.exports = http
 
 ## API
 
+### `apply(element, string): Element`
+
+- `element` `{Element}` DOM element with children to be patched.
+- `string` `{String|SafeString}` String or [SafeString](#safestring) containing safe HTML to render.
+
+Updates the content of the given element, making the fewest possible changes required to match the given string of HTML. The string is converted into an HTML `<template>` and the DOM trees are compared. Returns the updated element.
+
 ### `` html`string`: SafeString ``
 
 A template tag that creates a new [SafeString](#safestring) containing a string of HTML. Interpolated values are serialized based on type:
@@ -97,13 +104,6 @@ A template tag that creates a new [SafeString](#safestring) containing a string 
 - `string` `{String}` String of safe HTML.
 
 Wraps a string in a [SafeString](#safestring) to indicate that it's safe to be inserted into the document. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
-
-### `apply(element, string): element`
-
-- `element` `{Element}` DOM element with children to be patched.
-- `string` `{String|SafeString}` String or [SafeString](#safestring) containing safe HTML to render.
-
-Updates the content of the given element, making the fewest possible changes required to match the given string of HTML. The string is converted into an HTML `<template>` and the DOM trees are compared. Returns the updated element.
 
 ## SafeString
 
