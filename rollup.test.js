@@ -13,7 +13,11 @@ export default {
 		),
 	},
 	plugins: [
-		...node(),
+		...node({
+			resolve: {
+				browser: true,
+			},
+		}),
 		istanbul({
 			exclude: '{node_modules,test}/**',
 		}),
