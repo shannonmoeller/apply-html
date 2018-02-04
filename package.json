@@ -54,7 +54,7 @@
     "prettier": "^1.10.2",
     "rollup": "^0.55.3",
     "rollup-plugin-istanbul": "^2.0.0",
-    "rollup-preset-node": "^1.0.0-3",
+    "rollup-preset-isomorphic": "^1.0.0-4",
     "run-headless": "^2.0.1",
     "tap-diff": "^0.1.1"
   },

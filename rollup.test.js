@@ -1,6 +1,6 @@
 import camelCase from 'lodash.camelcase';
 import istanbul from 'rollup-plugin-istanbul';
-import node from 'rollup-preset-node';
+import isomorphic from 'rollup-preset-isomorphic';
 import pkg from './package.json';
 
 export default {
@@ -13,11 +13,7 @@ export default {
 		),
 	},
 	plugins: [
-		...node({
-			resolve: {
-				browser: true,
-			},
-		}),
+		...isomorphic(),
 		istanbul({
 			exclude: '{node_modules,test}/**',
 		}),
