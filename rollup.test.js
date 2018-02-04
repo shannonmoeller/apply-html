@@ -9,7 +9,7 @@ export default {
 	plugins: [
 		...node(),
 		istanbul({
-			exclude: ['node_modules/**', 'test/**'],
+			exclude: '{node_modules,test}/**',
 		}),
 	],
 };

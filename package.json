@@ -34,7 +34,6 @@
   "license": "MIT",
   "main": "dist/apply-html.cjs.js",
   "module": "dist/apply-html.es.js",
-  "browser": "dist/apply-html.umd.js",
   "files": [
     "dist",
     "*.md"

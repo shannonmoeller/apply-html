@@ -22,6 +22,12 @@ Play with it on [CodePen](https://codepen.io/shannonmoeller/pen/XZXBpE?editors=1
 $ npm install --save apply-html
 ```
 
+or
+
+```html
+<script src="https://wzrd.in/standalone/apply-html"></script>
+```
+
 ## Usage
 
 ### Patching
