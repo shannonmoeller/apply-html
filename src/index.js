@@ -9,6 +9,10 @@ export class SafeString {
 		return this.raw.length;
 	}
 
+	inspect() {
+		return this.raw;
+	}
+
 	toJSON() {
 		return this.raw;
 	}

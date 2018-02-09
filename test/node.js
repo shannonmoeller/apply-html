@@ -14,6 +14,7 @@ test('should interpolate values', async t => {
 		null,
 		false,
 		true,
+		0,
 		123,
 		{ foo: 'bar' },
 		'<em>foo</em>',
@@ -27,10 +28,11 @@ test('should interpolate values', async t => {
 
 	const expected = `
 		Hi
-		123{&quot;foo&quot;:&quot;bar&quot;}&lt;em&gt;foo&lt;/em&gt;<em>foo</em>
+		0123{&quot;foo&quot;:&quot;bar&quot;}&lt;em&gt;foo&lt;/em&gt;<em>foo</em>
 	`;
 
 	t.equal(actual.length, expected.length);
+	t.equal(actual.inspect(), expected);
 	t.equal(actual.toJSON(), expected);
 	t.equal(actual.toString(), expected);
 });
