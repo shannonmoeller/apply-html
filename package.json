@@ -46,14 +46,14 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.17.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-config-whim": "^3.1.0-7",
+    "eslint-config-whim": "^3.1.0-8",
     "husky": "^0.14.3",
     "lodash.camelcase": "^4.3.0",
     "npm-run-all": "^4.1.2",
     "nyc": "^11.4.1",
     "prettier": "^1.10.2",
     "rollup": "^0.55.5",
-    "rollup-config-whim": "^1.0.0-8",
+    "rollup-config-whim": "^1.0.0-9",
     "run-headless": "^2.0.1",
     "tap-diff": "^0.1.1"
   },
@@ -66,6 +66,13 @@
     "extends": [
       "eslint-config-whim",
       "eslint-config-prettier"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "node_modules/**",
+      "test/**",
+      "**/*.config.js"
     ]
   },
   "engines": {
