@@ -1,18 +1,3 @@
-import pkg from './package.json';
+import whim from 'rollup-config-whim';
 
-export default {
-	external: Object.keys(pkg.dependencies),
-	input: 'src/index.js',
-	output: [
-		{
-			format: 'cjs',
-			file: pkg.main,
-			sourcemap: true,
-		},
-		{
-			format: 'es',
-			file: pkg.module,
-			sourcemap: true,
-		},
-	],
-};
+export default whim();

@@ -1,14 +1,14 @@
 import test from 'blue-tape';
 import { SafeString, escape, html, raw } from '../src/index.js';
 
-test('should create safe strings', async t => {
+test('should create safe strings', async (t) => {
 	t.ok(html`` instanceof SafeString);
 	t.ok(raw('') instanceof SafeString);
 	t.ok(raw(html``) instanceof SafeString);
 	t.ok(raw(raw('')) instanceof SafeString);
 });
 
-test('should interpolate values', async t => {
+test('should interpolate values', async (t) => {
 	const values = [
 		undefined,
 		null,
@@ -37,7 +37,7 @@ test('should interpolate values', async t => {
 	t.equal(actual.toString(), expected);
 });
 
-test('should enforce type', async t => {
+test('should enforce type', async (t) => {
 	t.throws(() => escape(), TypeError, 'expects value');
 	t.throws(() => escape(1), TypeError, 'expects string');
 

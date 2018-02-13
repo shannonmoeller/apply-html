@@ -2,7 +2,7 @@ import './node.js';
 import test from 'blue-tape';
 import { apply, html } from '../src/index.js';
 
-test('should update child nodes', async t => {
+test('should update child nodes', async (t) => {
 	const parentA = document.createElement('div');
 	const a = html`<main><p>hello world</p></main>`;
 	const b = html`<main><p class="foo">hello you</p></main>`;
@@ -21,7 +21,7 @@ test('should update child nodes', async t => {
 	t.equal(childA, childB, 'same child');
 });
 
-test('should enforce type', async t => {
+test('should enforce type', async (t) => {
 	const div = document.createElement('div');
 
 	t.throws(() => apply(), TypeError, 'expects element');
