@@ -5,8 +5,8 @@
   "scripts": {
     "build": "rm -rf dist && mkdir dist && rollup -c",
     "lint": "run-s lint-*",
-    "lint-prettier": "prettier $npm_package_config_ignore --write '{src,test}/**/*.js'",
-    "lint-eslint": "eslint $npm_package_config_ignore --fix '{src,test}/**/*.js'",
+    "lint-prettier": "prettier --ignore-path .gitignore --write \"**/*.js\"",
+    "lint-eslint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
     "test": "nyc -r none run-s test-* && nyc report -r lcov -r text",
     "test-node": "NODE_ENV=test rollup test/node.js -c | node | tap-diff",
     "test-browser": "NODE_ENV=test rollup test/browser.js -c | run-headless | tap-diff",
@@ -46,14 +46,13 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.17.0",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-config-whim": "^3.1.0-8",
+    "eslint-config-whim": "^3.1.0-9",
     "husky": "^0.14.3",
-    "lodash.camelcase": "^4.3.0",
     "npm-run-all": "^4.1.2",
     "nyc": "^11.4.1",
     "prettier": "^1.10.2",
     "rollup": "^0.55.5",
-    "rollup-config-whim": "^1.0.0-9",
+    "rollup-config-whim": "^1.0.0-10",
     "run-headless": "^2.0.1",
     "tap-diff": "^0.1.1"
   },
@@ -69,10 +68,8 @@
     ]
   },
   "nyc": {
-    "exclude": [
-      "node_modules/**",
-      "test/**",
-      "**/*.config.js"
+    "include": [
+      "src/**"
     ]
   },
   "engines": {

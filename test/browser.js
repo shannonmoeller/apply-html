@@ -1,6 +1,7 @@
-import './node.js';
 import test from 'blue-tape';
 import { apply, html } from '../src/index.js';
+
+import './node.js';
 
 test('should update child nodes', async (t) => {
 	const parentA = document.createElement('div');
