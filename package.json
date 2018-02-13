@@ -52,7 +52,7 @@
     "nyc": "^11.4.1",
     "prettier": "^1.10.2",
     "rollup": "^0.55.5",
-    "rollup-config-whim": "^1.0.0",
+    "rollup-config-whim": "^1.0.1",
     "run-headless": "^2.0.1",
     "tap-diff": "^0.1.1"
   },
