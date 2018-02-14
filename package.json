@@ -13,7 +13,7 @@
     "report": "nyc report -r text-lcov | coveralls",
     "pretest": "run-s lint",
     "precommit": "run-s test build && git add .",
-    "prepublishOnly": "git diff-index --quiet HEAD"
+    "prepublishOnly": "run-s test build"
   },
   "keywords": [
     "apply",
