@@ -7,7 +7,7 @@
     "lint": "run-s lint-*",
     "lint-prettier": "prettier --ignore-path .gitignore --write \"**/*.js\"",
     "lint-eslint": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
-    "test": "nyc -r none run-s test-* && nyc report -r lcov -r text",
+    "test": "nyc -r none run-s test-* && nyc report",
     "test-node": "NODE_ENV=test rollup test/node.js -c | node | tap-diff",
     "test-browser": "NODE_ENV=test rollup test/browser.js -c | run-headless | tap-diff",
     "report": "nyc report -r text-lcov | coveralls",
@@ -70,6 +70,10 @@
   "nyc": {
     "include": [
       "src/**"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
     ]
   },
   "engines": {
