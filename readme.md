@@ -101,8 +101,9 @@ A template tag that creates a new [SafeString](#safestring) containing a string 
 - `Array` - Items are serialized then joined with an empty string (`''`).
 - `Boolean|null|undefined` - Converted to an empty string (`''`).
 - `Function` - Throws a `TypeError`.
+- `Number` - Inserted as-is.
 - `Object` - Converted to an HTML-escaped JSON blob.
-- `SafeString|Number` - Inserted as-is.
+- `SafeString` - Inserted as-is.
 - `String` - HTML-escaped to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, use [`raw()`](#rawstring-safestring).
 
 ### `raw(string): SafeString`
@@ -148,21 +149,9 @@ Standing on the shoulders of these giants:
 - [hyperhtml](http://npm.im/hyperhtml)
 - [lit-html](http://npm.im/lit-html)
 - [morphdom](http://npm.im/morphdom)
-- [petit-dom](http://npm.im/petit-dom)
 - [react](http://npm.im/react)
-- [snabbdom](http://npm.im/snabbdom)
 - [vue.js](http://npm.im/vue)
 - and [more...](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html)
-
-## Contribute
-
-Standards for this project, including tests, code coverage, and semantics are enforced with a build tool. Pull requests must include passing tests with 100% code coverage and no linting errors.
-
-### Test
-
-```command
-$ npm test
-```
 
 ----
 

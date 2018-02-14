@@ -1,45 +1,37 @@
 import nanomorph from 'nanomorph';
+import { SafeString } from './safe-string.js';
 
-export class SafeString {
-	constructor(raw) {
-		this.raw = String(raw);
+export function raw(value) {
+	if (value instanceof SafeString) {
+		return value;
 	}
 
-	get length() {
-		return this.raw.length;
-	}
-
-	inspect() {
-		return this.raw;
-	}
-
-	toJSON() {
-		return this.raw;
-	}
-
-	toString() {
-		return this.raw;
-	}
+	return new SafeString(value);
 }
 
 export function escape(value) {
+	if (value instanceof SafeString) {
+		return value;
+	}
+
 	if (typeof value !== 'string') {
 		throw new TypeError('Expected a string.');
 	}
 
-	return value
-		.replace(/&/g, '&amp;')
-		.replace(/>/g, '&gt;')
-		.replace(/</g, '&lt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;')
-		.replace(/`/g, '&#96;');
+	return raw(
+		value
+			.replace(/&/g, '&amp;')
+			.replace(/>/g, '&gt;')
+			.replace(/</g, '&lt;')
+			.replace(/"/g, '&quot;')
+			.replace(/'/g, '&#39;')
+			.replace(/`/g, '&#96;')
+	);
 }
 
 export function serialize(value) {
 	if (value instanceof SafeString) {
-		// Assume trustworthy
-		return value.raw;
+		return value;
 	}
 
 	if (Array.isArray(value)) {
@@ -73,16 +65,28 @@ export function serialize(value) {
 	return escape(value);
 }
 
-export function apply(element, string) {
+export function html(strings, ...values) {
+	const literals = strings.raw;
+	let result = literals[0];
+
+	values.forEach((value, i) => {
+		result += serialize(value);
+		result += literals[i + 1];
+	});
+
+	return raw(result);
+}
+
+export function apply(element, value) {
 	if (!(element instanceof Element)) {
 		throw new TypeError('Expected an element.');
 	}
 
-	if (string instanceof SafeString) {
-		string = string.toString();
+	if (value instanceof SafeString) {
+		value = value.toString();
 	}
 
-	if (typeof string !== 'string') {
+	if (typeof value !== 'string') {
 		throw new TypeError('Expected a string.');
 	}
 
@@ -91,7 +95,7 @@ export function apply(element, string) {
 	// Create inert DOM structure for diffing. Prevents
 	// premature or duplicate resource loading and
 	// execution of custom-element lifecycle callbacks.
-	template.innerHTML = string;
+	template.innerHTML = value;
 
 	// Patch live DOM with new inert DOM
 	nanomorph(element, template.content, {
@@ -99,26 +103,4 @@ export function apply(element, string) {
 	});
 
 	return element;
-}
-
-export function html(strings, ...values) {
-	const literals = strings.raw;
-	let result = '';
-
-	values.forEach((value, i) => {
-		result += literals[i];
-		result += serialize(value);
-	});
-
-	result += literals[literals.length - 1];
-
-	return new SafeString(result);
-}
-
-export function raw(string) {
-	if (string instanceof SafeString) {
-		return string;
-	}
-
-	return new SafeString(string);
 }
