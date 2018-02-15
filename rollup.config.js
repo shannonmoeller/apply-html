@@ -1,3 +1,3 @@
-import whim from 'rollup-config-whim';
+import { configureModule } from 'rollup-config-whim';
 
-export default whim();
+export default configureModule();

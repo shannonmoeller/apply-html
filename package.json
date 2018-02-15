@@ -51,8 +51,8 @@
     "npm-run-all": "^4.1.2",
     "nyc": "^11.4.1",
     "prettier": "^1.10.2",
-    "rollup": "^0.55.5",
-    "rollup-config-whim": "^1.0.1",
+    "rollup": "^0.56.0",
+    "rollup-config-whim": "^2.0.0-0",
     "run-headless": "^2.0.1",
     "tap-diff": "^0.1.1"
   },
