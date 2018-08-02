@@ -110,9 +110,9 @@ A template tag that creates a new [SafeString](#safestring) containing a string 
 - `Boolean|null|undefined` - Converted to an empty string (`''`).
 - `Function` - Throws a `TypeError`.
 - `Number` - Inserted as-is.
-- `Object` - Converted to an HTML-escaped JSON blob.
+- `Object` - Converted to an HTML-encoded JSON blob.
 - `SafeString` - Inserted as-is.
-- `String` - HTML-escaped to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, use [`raw()`](#rawstring-safestring).
+- `String` - HTML-encoded to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)). To opt out of escaping, use [`raw()`](#rawstring-safestring).
 
 ### `raw(string): SafeString`
 

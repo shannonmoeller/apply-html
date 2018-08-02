@@ -1,5 +1,5 @@
 import { isSafe } from './html.js';
-import { morph } from './morph.js';
+import { morphChildren } from './morph.js';
 
 export function apply(element, value) {
 	if (!(element instanceof Element)) {
@@ -18,5 +18,7 @@ export function apply(element, value) {
 
 	template.innerHTML = value;
 
-	return morph(element, template.content);
+	morphChildren(template.content, element);
+
+	return element;
 }

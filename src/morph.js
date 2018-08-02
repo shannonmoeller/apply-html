@@ -149,7 +149,7 @@ function updateTextarea(newNode, oldNode) {
 }
 
 // Walk and morph a dom tree
-function walk(newNode, oldNode) {
+export function morph(newNode, oldNode) {
 	if (!oldNode) {
 		return newNode;
 	} else if (!newNode) {
@@ -161,17 +161,17 @@ function walk(newNode, oldNode) {
 	}
 
 	// eslint-disable-next-line no-use-before-define
-	updateNode(newNode, oldNode);
+	morphNode(newNode, oldNode);
 
 	// eslint-disable-next-line no-use-before-define
-	updateChildren(newNode, oldNode);
+	morphChildren(newNode, oldNode);
 
 	return oldNode;
 }
 
 // diff elements and apply the resulting patch to the old node
 // (obj, obj) -> null
-export function updateNode(newNode, oldNode) {
+export function morphNode(newNode, oldNode) {
 	const nodeType = newNode.nodeType;
 	const nodeName = newNode.nodeName;
 
@@ -198,7 +198,7 @@ export function updateNode(newNode, oldNode) {
 
 // Update the children of elements
 // (obj, obj) -> null
-export function updateChildren(newNode, oldNode) {
+export function morphChildren(newNode, oldNode) {
 	let oldChild;
 	let newChild;
 	let morphed;
@@ -231,7 +231,7 @@ export function updateChildren(newNode, oldNode) {
 
 			// Both nodes are the same, morph
 		} else if (isSame(newChild, oldChild)) {
-			morphed = walk(newChild, oldChild);
+			morphed = morph(newChild, oldChild);
 			if (morphed !== oldChild) {
 				oldNode.replaceChild(morphed, oldChild);
 				offset++;
@@ -251,13 +251,13 @@ export function updateChildren(newNode, oldNode) {
 
 			// If there was a node with the same ID or placeholder in the old list
 			if (oldMatch) {
-				morphed = walk(newChild, oldMatch);
+				morphed = morph(newChild, oldMatch);
 				if (morphed !== oldMatch) offset++;
 				oldNode.insertBefore(morphed, oldChild);
 
 				// It's safe to morph two nodes in-place if neither has an ID
 			} else if (!newChild.id && !oldChild.id) {
-				morphed = walk(newChild, oldChild);
+				morphed = morph(newChild, oldChild);
 				if (morphed !== oldChild) {
 					oldNode.replaceChild(morphed, oldChild);
 					offset++;
@@ -278,10 +278,4 @@ export function updateChildren(newNode, oldNode) {
 			}
 		}
 	}
-}
-
-export function morph(a, b) {
-	updateChildren(b, a);
-
-	return a;
 }

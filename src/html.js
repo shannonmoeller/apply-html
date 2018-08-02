@@ -1,4 +1,4 @@
-const ENTITY_RX = /[&<>"'`]/g;
+const UNSAFE_RX = /[&<>"'`]/g;
 const ENTITIES = {
 	'&': '&amp;',
 	'<': '&lt;',
@@ -42,7 +42,7 @@ export function raw(value) {
 	return new SafeString(value);
 }
 
-export function escape(value) {
+export function encode(value) {
 	if (isSafe(value)) {
 		return value;
 	}
@@ -51,7 +51,7 @@ export function escape(value) {
 		throw new TypeError('Expected a string.');
 	}
 
-	return raw(value.replace(ENTITY_RX, (x) => ENTITIES[x]));
+	return raw(value.replace(UNSAFE_RX, (x) => ENTITIES[x]));
 }
 
 export function serialize(value) {
@@ -86,7 +86,7 @@ export function serialize(value) {
 			break;
 	}
 
-	return escape(value);
+	return encode(value);
 }
 
 export function html(strings, ...values) {
