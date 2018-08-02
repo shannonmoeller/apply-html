@@ -187,9 +187,13 @@ export function updateNode(newNode, oldNode) {
 
 	// Some DOM nodes are weird
 	// https://github.com/patrick-steele-idem/morphdom/blob/master/src/specialElHandlers.js
-	if (nodeName === 'INPUT') updateInput(newNode, oldNode);
-	else if (nodeName === 'OPTION') updateOption(newNode, oldNode);
-	else if (nodeName === 'TEXTAREA') updateTextarea(newNode, oldNode);
+	if (nodeName === 'INPUT') {
+		updateInput(newNode, oldNode);
+	} else if (nodeName === 'OPTION') {
+		updateOption(newNode, oldNode);
+	} else if (nodeName === 'TEXTAREA') {
+		updateTextarea(newNode, oldNode);
+	}
 }
 
 // Update the children of elements
