@@ -80,8 +80,8 @@ test('change attribute', async (t) => {
 
 	assertApply(
 		t,
-		html`<svg><use xlink:href="./foo.svg"></use></svg>`,
-		html`<svg><use xlink:href="./bar.svg"></use></svg>`
+		html`<svg><use href="./foo.svg"></use></svg>`,
+		html`<svg><use href="./bar.svg"></use></svg>`
 	);
 
 	assertApply(
