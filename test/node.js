@@ -1,17 +1,16 @@
 import test from 'blue-tape';
-import { SafeString } from '../src/safe-string.js';
-import { escape, html, raw } from '../src/index.js';
+import { escape, html, isSafe, raw } from '../src/index.js';
 
 test('should create safe strings', async (t) => {
-	t.ok(html`` instanceof SafeString);
-	t.ok(raw('') instanceof SafeString);
-	t.ok(raw(html``) instanceof SafeString);
-	t.ok(raw(raw('')) instanceof SafeString);
-	t.ok(raw(escape('')) instanceof SafeString);
-	t.ok(escape('') instanceof SafeString);
-	t.ok(escape(html``) instanceof SafeString);
-	t.ok(escape(raw('')) instanceof SafeString);
-	t.ok(escape(escape('')) instanceof SafeString);
+	t.ok(isSafe(html``));
+	t.ok(isSafe(raw('')));
+	t.ok(isSafe(raw(html``)));
+	t.ok(isSafe(raw(raw(''))));
+	t.ok(isSafe(raw(escape(''))));
+	t.ok(isSafe(escape('')));
+	t.ok(isSafe(escape(html``)));
+	t.ok(isSafe(escape(raw(''))));
+	t.ok(isSafe(escape(escape(''))));
 
 	t.throws(() => {
 		html``.raw = 'evil';

@@ -4,7 +4,7 @@
 
 It's `.innerHTML = ''` for the 21st century!
 
-Yet another library to diff and patch an existing DOM tree by efficiently comparing it to a string. Why? This library is a little bit different than [others](#acknowledgements). It makes use of an [HTML `<template>`'s](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) unique ability to create an inert [document fragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment). These amazing creatures' features include:
+Yet another library to diff and patch an existing DOM tree by efficiently comparing it to a string. Why? This library is a little bit different than [others](#acknowledgements). It makes use of an [HTML `<template>`'s](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) unique ability to create an inert [document fragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), featuring:
 
 - A real DOM tree
 - Multiple root nodes
@@ -12,7 +12,7 @@ Yet another library to diff and patch an existing DOM tree by efficiently compar
 - Will not apply embedded stylesheets prematurely
 - Will not trigger custom element constructors or lifecycle events prematurely
 
-The live DOM is then patched with the inert fragment using [`nanomorph`](http://npm.im/nanomorph), a hyper-fast diffing algorithm for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
+The live DOM is then patched with the inert fragment using a hyper-fast [diffing algorithm](http://npm.im/nanomorph) for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
 
 Play with it on [CodePen](https://codepen.io/shannonmoeller/pen/XZXBpE?editors=1111).
 
@@ -26,6 +26,14 @@ or
 
 ```html
 <script src="https://wzrd.in/standalone/apply-html"></script>
+```
+
+or
+
+```html
+<script type="module">
+    import { apply, html } from 'https://unpkg.com/apply-html?module';
+</script>
 ```
 
 ## Usage
@@ -92,7 +100,7 @@ module.exports = http
 - `element` `{Element}` DOM element with children to be patched.
 - `string` `{String|SafeString}` String or [SafeString](#safestring) containing safe HTML to render.
 
-Updates the content of the given element, making the fewest possible changes required to match the given string of HTML. The string is converted into an HTML `<template>` and the DOM trees are compared. Returns the updated element.
+Updates the content of the given element, making the fewest possible changes required to match the given string of HTML. The string is converted into an HTML `<template>` and the resulting DOM trees are compared. Returns the updated element.
 
 ### `` html`string`: SafeString ``
 
@@ -114,29 +122,19 @@ Wraps a string in a [SafeString](#safestring) to indicate that it's safe to be i
 
 ## SafeString
 
-### `new SafeString(string)`
-
-- `string` `{any}` - The value to wrap. Will be coerced into a string with `String()`.
-
-Wraps a string to indicate that the string is safe to be inserted into the DOM. Only use on trusted strings to safeguard against [XSS](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)).
-
-### SafeString Properties
-
-#### `.raw` `{String}`
+### `.raw` `{String}`
 
 The wrapped string.
 
-#### `.length` `{Number}`
+### `.length` `{Number}`
 
 Length of the wrapped string. Read only.
 
-### SafeString Methods
-
-#### `.toJSON(): String`
+### `.toJSON(): String`
 
 Returns the raw string.
 
-#### `.toString(): String`
+### `.toString(): String`
 
 Returns the raw string.
 
@@ -146,10 +144,14 @@ Standing on the shoulders of these giants:
 
 - [bel](http://npm.im/bel)
 - [diff-dom](http://npm.im/diff-dom)
+- [domdiff](http://npm.im/domdiff)
 - [hyperhtml](http://npm.im/hyperhtml)
 - [lit-html](http://npm.im/lit-html)
 - [morphdom](http://npm.im/morphdom)
-- [react](http://npm.im/react)
+- [nanomorph](http://npm.im/nanomorph)
+- [preact](http://nipm.im/preact)
+- [snabbdom](http://npm.im/snabbdom)
+- [react](http://nipm.im/react)
 - [vue.js](http://npm.im/vue)
 - and [more...](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts-results/table.html)
 

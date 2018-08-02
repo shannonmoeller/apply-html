@@ -24,6 +24,7 @@
     "isomorphic",
     "literal",
     "morph",
+    "nano",
     "patch",
     "render",
     "tag",
@@ -38,9 +39,7 @@
     "dist",
     "*.md"
   ],
-  "dependencies": {
-    "nanomorph": "github:shannonmoeller/nanomorph#cc1b2b6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "blue-tape": "^1.0.0",
     "coveralls": "^3.0.1",

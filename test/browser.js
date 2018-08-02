@@ -18,8 +18,8 @@ test('should update child nodes', async (t) => {
 	const childB = parentB.children[0];
 
 	t.equal(parentA.innerHTML, expected, 'patched content');
-	t.equal(parentA, parentB, 'same parent');
-	t.equal(childA, childB, 'same child');
+	t.equal(parentA === parentB, true, 'same parent');
+	t.equal(childA === childB, true, 'same child');
 });
 
 test('should enforce type', async (t) => {
