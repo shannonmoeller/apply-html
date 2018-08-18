@@ -18,7 +18,7 @@ export function apply(element, value) {
 
 	template.innerHTML = value;
 
-	morphChildren(template.content, element);
+	morphChildren(element, template.content);
 
 	return element;
 }

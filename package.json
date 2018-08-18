@@ -39,7 +39,9 @@
     "dist",
     "*.md"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "xdiff": "^0.2.11"
+  },
   "devDependencies": {
     "blue-tape": "^1.0.0",
     "coveralls": "^3.0.1",

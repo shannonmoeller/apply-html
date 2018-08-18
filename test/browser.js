@@ -41,9 +41,17 @@ test('should enforce type', async (t) => {
 	t.throws(() => apply(div), TypeError, 'expects string');
 });
 
+test('change type', async (t) => {
+	assertApply(t, html`foo`, html`<!-- bar -->`);
+	assertApply(t, html`<div>foo</div>`, html`<!-- bar -->`);
+	assertApply(t, html`<!-- foo -->`, html`bar`);
+});
+
 test('change text', async (t) => {
 	assertApply(t, html`foo`, html`bar`);
+	assertApply(t, html`foo<br/>bar`, html`bar<br/>baz`);
 	assertApply(t, html`<div>foo</div>`, html`<div>bar</div>`);
+	assertApply(t, html`<!-- foo -->`, html`<!-- bar -->`);
 });
 
 test('change tag', async (t) => {
@@ -92,24 +100,24 @@ test('change attribute', async (t) => {
 
 	assertApply(
 		t,
+		html`<svg><use></use></svg>`,
+		html`<svg><use xlink:href="./foo.svg"></use></svg>`
+	);
+
+	assertApply(
+		t,
 		html`<svg><use xlink:href="./foo.svg"></use></svg>`,
 		html`<svg><use></use></svg>`
 	);
 });
 
 test('add child', async (t) => {
+	assertApply(t, html``, html`<li>a</li><li>b</li>`);
+
 	assertApply(
 		t,
 		html`<ul><li>a</li></ul>`,
 		html`<ul><li>a</li><li>b</li></ul>`
-	);
-});
-
-test('remove child', async (t) => {
-	assertApply(
-		t,
-		html`<ul><li>a</li><li>b</li></ul>`,
-		html`<ul><li>a</li></ul>`
 	);
 });
 
@@ -141,19 +149,39 @@ test('move child', async (t) => {
 	assertApply(
 		t,
 		html`
-			<ul>
-				<li id="a">a</li>
-				<li id="b">b</li>
-				<li id="c">c</li>
-			</ul>
+			<li id="a">a</li>
+			<li id="b">b</li>
+			<li id="c">c</li>
+			<li id="d">d</li>
+			<li id="e">e</li>
+			<li id="f">f</li>
+			<li id="g">g</li>
+			<li id="h">h</li>
+			<li id="i">i</li>
+			<li id="j">j</li>
 		`,
 		html`
-			<ul>
-				<li id="b">bar</li>
-				<li id="a">foo</li>
-				<li id="c">baz</li>
-			</ul>
+			<li id="a">a2</li>
+			<li id="b">b2</li>
+			<li id="h">h2</li>
+			<li id="c">c2</li>
+			<li id="d">d2</li>
+			<li id="e">e2</li>
+			<li id="k">k2</li>
+			<li id="f">f2</li>
+			<li id="g">g2</li>
+			<li id="i">i2</li>
+			<li id="j">j2</li>
+			<li id="l">l2</li>
 		`
+	);
+});
+
+test('remove child', async (t) => {
+	assertApply(
+		t,
+		html`<ul><li>a</li><li>b</li></ul>`,
+		html`<ul><li>a</li></ul>`
 	);
 });
 

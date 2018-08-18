@@ -12,7 +12,7 @@ Yet another library to diff and patch an existing DOM tree by efficiently compar
 - Will not apply embedded stylesheets prematurely
 - Will not trigger custom element constructors or lifecycle events prematurely
 
-The live DOM is then patched with the inert fragment using a hyper-fast [diffing algorithm](http://npm.im/nanomorph) for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
+The live DOM is then patched with the inert fragment using an efficient diffing algorithm for real DOM nodes. This ensures that things only start happening if and when they're supposed to, organically.
 
 Play with it on [CodePen](https://codepen.io/shannonmoeller/pen/XZXBpE?editors=1111).
 

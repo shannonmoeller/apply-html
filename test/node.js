@@ -39,15 +39,8 @@ test('should interpolate values', async (t) => {
 		encode(raw('<em>foo</em>')),
 	];
 
-	const actual = html`
-		Hi
-		${values}
-	`;
-
-	const expected = `
-		Hi
-		0123{&quot;foo&quot;:&quot;bar&quot;}&lt;em&gt;foo&lt;/em&gt;<em>foo</em>&lt;em&gt;foo&lt;/em&gt;<em>foo</em>
-	`;
+	const actual = html`Hi ${values}`;
+	const expected = `Hi 0123{&quot;foo&quot;:&quot;bar&quot;}&lt;em&gt;foo&lt;/em&gt;<em>foo</em>&lt;em&gt;foo&lt;/em&gt;<em>foo</em>`;
 
 	t.equal(actual.length, expected.length);
 	t.equal(actual.toJSON(), expected);

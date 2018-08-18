@@ -98,5 +98,5 @@ export function html(strings, ...values) {
 		result += literals[i + 1];
 	});
 
-	return raw(result);
+	return raw(result.trim());
 }
